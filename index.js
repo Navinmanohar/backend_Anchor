@@ -21,9 +21,8 @@ app.use(bodyParser.urlencoded({limit:'30mb',extended:true},))
 app.use(cors())
 dotenv.config();
   
-const Port=5000;
-const db='mongodb+srv://navin:c44EerccVF7kvQ4p@cluster0.dvfwjia.mongodb.net/Geeks?retryWrites=true&w=majority'
-
+const Port=process.env.PORT;
+const db=process.env.MONGO_URL
 
 mongoose
     .connect(db)
@@ -47,6 +46,6 @@ app.use('/message', MessageRoute)
 
 // console.log(typeof routes)
 
-app.listen(process.env.PORT||Port,()=>{
+app.listen(port,()=>{
     console.log(`listening at ${Port}` )
 })
