@@ -27,12 +27,14 @@ const registerUser = async (req, res) => {
     // changed
     const otp = generateOtp();
     const verificationData = new verification({
-      username: newUser.username,
+      username: `${username}`,
       otp: otp,
     });
     MailTransport().sendMail({
-      from: "no-reply@anchor.com",
-      to: newUser.username,
+      from: {
+        name:"Navin ",
+      address:"navinmanohar78086@gmail.com"},
+      to:`${username}`,
       subject: "Please verify your email",
       html: EmailTemplate(otp),
     });
@@ -56,7 +58,7 @@ const registerUser = async (req, res) => {
 // username=owner
   // if (!isValidObjectId(username)) return sendError(res, "Invalid userId");
 
-  const user = await model.findOne({ username });
+  const user = await verification.findOne({ username });
 // console.log( "this is owner",)
 
   if (!user) return sendError(res, "User not found");

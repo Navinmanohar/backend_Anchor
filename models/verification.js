@@ -1,5 +1,4 @@
 const mongoose=require("mongoose");
-const { version } = require("react");
 const bcrypt=require("bcrypt")
 
 const VerificationSchema=mongoose.Schema({
@@ -34,8 +33,8 @@ VerificationSchema.pre('save', async function (next) {
   next();
 });
 
-VerificationSchema.methods.compareToken=async ()=>{
-const result=bcrypt.compareSync(token,this.token)
-return result;
-}
+// VerificationSchema.methods.compareToken=async ()=>{
+// const result=await bcrypt.compareSync(token,this.token)
+// return result;
+// }
 module.exports=mongoose.model("Verification",VerificationSchema);

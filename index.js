@@ -21,15 +21,14 @@ app.use(bodyParser.urlencoded({limit:'30mb',extended:true},))
 app.use(cors())
 dotenv.config();
   
-const Port=process.env.PORT;
-const db=process.env.MONGO_URL
+const Port=5000
+const db="mongodb+srv://navin:c44EerccVF7kvQ4p@cluster0.dvfwjia.mongodb.net/Geeks?retryWrites=true&w=majority"
 
 mongoose
     .connect(db)
     .then(() => console.log('MongoDB connected...'))
     .catch(err => console.log(err));
-
-
+ 
 app.get("/",(req,res)=>{
     
     res.send("hii")
@@ -46,6 +45,6 @@ app.use('/message', MessageRoute)
 
 // console.log(typeof routes)
 
-app.listen(port,()=>{
+app.listen(Port,()=>{
     console.log(`listening at ${Port}` )
 })
